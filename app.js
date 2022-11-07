@@ -3,6 +3,7 @@ import {Telegraf} from 'telegraf';
 import {QBittorrent} from '@ctrl/qbittorrent';
 import * as axios from 'axios';
 import {TOKEN} from './config.js';
+import {downloadFile} from './download.js';
 
 const client = new QBittorrent({
   baseUrl: 'http://localhost:8080/',
@@ -23,13 +24,12 @@ bot.on('document', (ctx) => {
     const doc = ctx.message.document;
     const fileName = doc.file_name;
     if (fileName.includes('.torrent')) {
-        // ctx.reply(`ето торрент`);
         const fileId = doc.file_id;
-        const fileUrl = ctx.telegram.getFileLink(fileId);
-        const response = axios.get(fileUrl);
-        ctx.reply(`ето торрент, вот ссылка:\n ${response.data}`);
-        // addTorrent(ctx.message.document);
-        
+        let fileUrl = '';
+        ctx.telegram.getFileLink(fileId).then((link)=>{
+          downloadFile(link,'./src/newTorrentFiles',fileName);
+          }
+        );
     } 
   } 
 ); 
