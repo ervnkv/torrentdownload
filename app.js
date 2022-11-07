@@ -30,9 +30,14 @@ bot.on('text', (ctx) => {
 } 
 ); 
 
+const channelId = -1001864974810;
+bot.telegram.sendMessage(channelId, 'ПРОВЕРКА СВЯЗИ ПИДОРАСЫ 😏');
 
-createRar();
-
+// bot.telegram.sendDocument(channelId, {
+//   source: data,
+//   filename: 'somefilename.txt'
+//   }).catch(function(error){ console.log(error);
+//   });
 
 bot.launch();
 
