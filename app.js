@@ -1,21 +1,9 @@
 'use strict';
 import {Telegraf} from 'telegraf';
-import {QBittorrent} from '@ctrl/qbittorrent';
-import * as axios from 'axios';
 import {TOKEN} from './config.js';
 import {downloadFile} from './download.js';
 
-const client = new QBittorrent({
-  baseUrl: 'http://localhost:8080/',
-  username: 'admin',
-  password: 'password',
-});
-
-async function addTorrent(file) {
-  const result = await client.addTorrent(file);
-  console.log(result);
-}
-
+// Настройка логики бота
 const bot = new Telegraf(TOKEN);
 
 bot.start((ctx) => ctx.reply('Привет!\r\nПришли сюда .torrent файл или magnet-ссылку.'));
@@ -27,7 +15,7 @@ bot.on('document', (ctx) => {
         const fileId = doc.file_id;
         let fileUrl = '';
         ctx.telegram.getFileLink(fileId).then((link)=>{
-          downloadFile(link,'./src/newTorrentFiles',fileName);
+          downloadFile(link,'./src/TorrentFiles',fileName);
           }
         );
     } 
@@ -40,6 +28,8 @@ bot.on('text', (ctx) => {
   } 
 } 
 ); 
+
+
 
 
 
