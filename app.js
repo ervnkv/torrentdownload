@@ -1,7 +1,8 @@
 'use strict';
 import {Telegraf} from 'telegraf';
-import {TOKEN} from './config.js';
-import {downloadFile} from './download.js';
+import {TOKEN} from './apps/config.js';
+import {downloadFile} from './apps/download.js';
+import {createRar} from './apps/archive.js';
 
 // Настройка логики бота
 const bot = new Telegraf(TOKEN);
@@ -30,7 +31,7 @@ bot.on('text', (ctx) => {
 ); 
 
 
-
+createRar();
 
 
 bot.launch();
