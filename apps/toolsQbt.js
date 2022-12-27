@@ -17,12 +17,9 @@ const client = new QBittorrent({
 
 
 export async function startTorrent(url,userId) {
-  let now = Date();
   client.addMagnet(url, {'paused' : 'true','category' : userId}).then(obj => {
-    // console.log(now,allData());
     console.log(obj);
   });
-  
 }
 
 
