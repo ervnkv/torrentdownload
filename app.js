@@ -31,16 +31,18 @@ bot.on('document', (ctx) => {
   } 
 ); 
 
-// bot.on('text', (ctx) => {
-//   let text = ctx.message.text;
-//   if (text.includes('magnet:?')) {
-//       ctx.reply(`ето магнет ссылка`);
-//   } 
-// } 
-// ); 
+bot.on('text', (ctx) => {
+  let text = ctx.message.text;
+  if (text.includes('magnet:?')) {
+      ctx.reply(`ето магнет ссылка`);
+  } else {
+    ctx.reply(`ето НЕ магнет ссылка`);
+  }
+} 
+); 
 
 // const channelId = -1001864974810;
-// bot.telegram.sendMessage(channelId, 'ПРОВЕРКА СВЯЗИ ПИДОРАСЫ 😏');
+// bot.telegram.sendMessage(channelId, 'ПРОВЕРКА СВЯЗИ');
 
 // bot.telegram.sendDocument(channelId, {
 //   source: data,
